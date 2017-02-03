@@ -16,7 +16,7 @@ public class OWE6_Eindopdracht {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        echt onwijs veel herrie
+        echt onwijs veel herrie met nog een beetje herrie
     }
     
 }
