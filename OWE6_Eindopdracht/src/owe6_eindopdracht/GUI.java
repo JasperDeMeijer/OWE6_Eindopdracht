@@ -5,6 +5,8 @@
  */
 package owe6_eindopdracht;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jdm
@@ -36,12 +38,10 @@ public class GUI extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonExportGenes = new javax.swing.JButton();
+        jButtonExportPubMed = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextField1.setText("jTextField1");
 
         jLabel1.setText("Bestand:");
 
@@ -53,6 +53,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jButtonBlader.setText("Blader");
+        jButtonBlader.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBladerActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -76,12 +81,12 @@ public class GUI extends javax.swing.JFrame {
             .addGap(0, 186, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Export Genes");
+        jButtonExportGenes.setText("Export Genes");
 
-        jButton2.setText("Export PubMed ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExportPubMed.setText("Export PubMed ");
+        jButtonExportPubMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonExportPubMedActionPerformed(evt);
             }
         });
 
@@ -108,8 +113,8 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBlader))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonExportGenes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonExportPubMed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -131,9 +136,9 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jButtonExportGenes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(jButtonExportPubMed)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -144,12 +149,24 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenActionPerformed
-        // TODO add your handling code here:
+        FileProcessing input = new FileProcessing();
+        ArrayList<String> lines;
+        
+        lines = input.FileRead(jTextField1.getText());
+        for(String i: lines){
+            System.out.println(i);
+        }
+        
     }//GEN-LAST:event_jButtonOpenActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonExportPubMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportPubMedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonExportPubMedActionPerformed
+
+    private void jButtonBladerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBladerActionPerformed
+        FileProcessing fp = new FileProcessing();
+        jTextField1.setText(fp.FileChooser());
+    }//GEN-LAST:event_jButtonBladerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,9 +174,9 @@ public class GUI extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonBlader;
+    private javax.swing.JButton jButtonExportGenes;
+    private javax.swing.JButton jButtonExportPubMed;
     private javax.swing.JButton jButtonOpen;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
