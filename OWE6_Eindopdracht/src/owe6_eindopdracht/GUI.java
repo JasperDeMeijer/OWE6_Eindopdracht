@@ -161,7 +161,10 @@ public class GUI extends javax.swing.JFrame {
         for(String line: linesTemporary){
             String[] lineSplit = line.split("\t");
             int taxID1 = Integer.parseInt(lineSplit[0]);
-            geneList.add(new Gene(Integer.parseInt(lineSplit[0])));
+            geneList.add(new Gene(Integer.parseInt(lineSplit[0]), Integer.parseInt(lineSplit[1]),lineSplit[2], lineSplit[3], lineSplit[4],
+                                  Integer.parseInt(lineSplit[5]), Integer.parseInt(lineSplit[6]), lineSplit[7], lineSplit[8], lineSplit[9], 
+                                  lineSplit[10], lineSplit[11]));
+            
             
             
             

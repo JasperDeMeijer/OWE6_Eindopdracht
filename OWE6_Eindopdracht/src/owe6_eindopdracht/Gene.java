@@ -25,9 +25,10 @@ public class Gene {
     private String geneRIFText;
     //End of variable declaration
     
-    Gene(int taxID1, int geneID1, String productAccessionVersion1, String interactionShortPhrase,
+    Gene(int taxID1, int geneID1, String productAccessionVersion1, String productName1, String interactionShortPhrase, 
          int taxID2, int geneID2, String productAccessionVersion2, String productName2, String pubMedID, 
          String lastUpdate, String GeneRIFText){
+        this.productName1 = productName1;
         this.taxID1 = taxID1;
         this.geneID1 = geneID1;
         this.productAccessionVersion1 = productAccessionVersion1;
@@ -42,8 +43,21 @@ public class Gene {
         
         
     }
-    Gene(int taxID1){
+   Gene(int taxID1, int geneID1, String productAccessionVersion1, String interactionShortPhrase,
+         int taxID2, int geneID2, String productAccessionVersion2, String productName2, 
+         String lastUpdate, String GeneRIFText){
         this.taxID1 = taxID1;
+        this.geneID1 = geneID1;
+        this.productAccessionVersion1 = productAccessionVersion1;
+        this.interactionShortPhrase = interactionShortPhrase;
+        this.taxID2 = taxID2;
+        this.geneID2 = geneID2;
+        this.productAccessionVersion2 = productAccessionVersion2;
+        this.productName2 = productName2;
+        this.lastUpdate = lastUpdate;
+        this.geneRIFText = GeneRIFText;
+        
+        
     }
 
     
