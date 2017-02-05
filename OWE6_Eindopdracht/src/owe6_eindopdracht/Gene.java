@@ -43,8 +43,10 @@ public class Gene {
         
         
     }
+    /**
    Gene(int taxID1, int geneID1, String productAccessionVersion1, String interactionShortPhrase,
-         int taxID2, int geneID2, String productAccessionVersion2, String productName2, 
+         int taxID2, 
+         int geneID2, String productAccessionVersion2, String productName2, 
          String lastUpdate, String GeneRIFText){
         this.taxID1 = taxID1;
         this.geneID1 = geneID1;
@@ -59,7 +61,7 @@ public class Gene {
         
         
     }
-
+ **/
     
     
     //Start of setters
