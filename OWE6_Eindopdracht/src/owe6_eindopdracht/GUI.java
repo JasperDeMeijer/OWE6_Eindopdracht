@@ -7,7 +7,9 @@ package owe6_eindopdracht;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 
 /**
@@ -65,10 +67,6 @@ public class GUI extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jPanel1.setBackground(new java.awt.Color(181, 171, 161));
         jPanel1.setForeground(new java.awt.Color(35, 23, 23));
@@ -156,7 +154,7 @@ public class GUI extends javax.swing.JFrame {
         ArrayList<String> linesTemporary;
         linesTemporary = input.FileRead(jTextField1.getText());
         
-        LinkedList<Gene> geneList = new LinkedList<>();
+        ArrayList<Gene> geneList = new ArrayList<>();
         
         for(String line: linesTemporary){
             String[] lineSplit = line.split("\t");
@@ -164,11 +162,20 @@ public class GUI extends javax.swing.JFrame {
             geneList.add(new Gene(Integer.parseInt(lineSplit[0]), Integer.parseInt(lineSplit[1]),lineSplit[2], lineSplit[3], lineSplit[4],
                                   Integer.parseInt(lineSplit[5]), Integer.parseInt(lineSplit[6]), lineSplit[7], lineSplit[8], lineSplit[9], 
                                   lineSplit[10], lineSplit[11]));
-            
-            
-            
-            
         }
+        
+        Interactions uniqueSetInstance = new Interactions();
+        Set<String> uniqueList = new HashSet<>();
+        uniqueList = uniqueSetInstance.uniqueInteractions(geneList);
+        
+        for(String i: uniqueList){
+            jComboBox1.addItem(i);
+            jComboBox2.addItem(i);
+        }
+        
+            
+            
+        
         
     }//GEN-LAST:event_jButtonOpenActionPerformed
 
@@ -185,7 +192,7 @@ public class GUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-
+    //GUI variables
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBlader;
     private javax.swing.JButton jButtonExportGenes;
@@ -199,4 +206,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-}
+    
+}  
+
