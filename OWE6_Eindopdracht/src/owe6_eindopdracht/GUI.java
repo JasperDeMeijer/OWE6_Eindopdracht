@@ -6,6 +6,9 @@
 package owe6_eindopdracht;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+
 
 /**
  *
@@ -150,11 +153,18 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButtonOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenActionPerformed
         FileProcessing input = new FileProcessing();
-        ArrayList<String> lines;
+        ArrayList<String> linesTemporary;
+        linesTemporary = input.FileRead(jTextField1.getText());
         
-        lines = input.FileRead(jTextField1.getText());
-        for(String i: lines){
-            System.out.println(i);
+        LinkedList<Gene> geneList = new LinkedList<>();
+        
+        for(String line: linesTemporary){
+            String[] lineSplit = line.split("\t");
+            int taxID1 = Integer.parseInt(lineSplit[0]);
+            geneList.add(new Gene(Integer.parseInt(lineSplit[0])));
+            
+            
+            
         }
         
     }//GEN-LAST:event_jButtonOpenActionPerformed
