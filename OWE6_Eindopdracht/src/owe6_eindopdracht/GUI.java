@@ -21,6 +21,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    
     public GUI() {
         initComponents();
     }
@@ -68,6 +69,12 @@ public class GUI extends javax.swing.JFrame {
         jButtonBlader.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBladerActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -221,8 +228,11 @@ public class GUI extends javax.swing.JFrame {
         Gene resetCounter = new Gene();
         resetCounter.CounterReset();
         
-        ArrayList<Gene> geneList = new ArrayList<>();
         //Creating an Arraylist of gene objects with the temporary lines splitted on tab indentation.
+        
+        //the list of genes will be cleared. Incase of the user pressing the open button several times 
+        geneList.clear();
+        
         for(String line: linesTemporary){
             String[] lineSplit = line.split("\t");
             int taxID1 = Integer.parseInt(lineSplit[0]);
@@ -278,6 +288,13 @@ public class GUI extends javax.swing.JFrame {
         jTextField1.setText(fp.FileChooser());
     }//GEN-LAST:event_jButtonBladerActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+        String selectedShortPhrase = (String) jComboBox1.getSelectedItem();
+        fp1.OverlapListBuilder(selectedShortPhrase, geneList);
+       
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,6 +320,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    //Added variables
+    private ArrayList<Gene> geneList = new ArrayList<>();
+    private FileProcessing fp1;
+    private FileProcessing fp2;
+    
     
 }  
 

@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,6 +65,15 @@ public class FileProcessing {
         }
         
         return lines;
+    }
+    public LinkedList<String> OverlapListBuilder(String interactionShortPhrase, ArrayList<Gene> geneList){
+        LinkedList<String> overlapList = new LinkedList<>();
+        for(Gene gene : geneList){
+            if (gene.getInteractionShortPhrase().equals(interactionShortPhrase)){
+                overlapList.add(Integer.toString(gene.getGeneID1()));
+            }
+        }
+        return overlapList;
     }
     
     
