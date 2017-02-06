@@ -11,6 +11,7 @@ package owe6_eindopdracht;
  */
 public class Gene {
     //Start of variable declaration
+    private static int counter;
     private int taxID1;
     private int geneID1;
     private String productAccessionVersion1;
@@ -40,7 +41,13 @@ public class Gene {
         this.pubMedID = pubMedID;
         this.lastUpdate = lastUpdate;
         this.geneRIFText = GeneRIFText;
+        counter++;
         
+        
+        
+    }
+    
+    Gene(){
         
     }
     /**
@@ -63,7 +70,9 @@ public class Gene {
     }
  **/
     
-    
+    protected void CounterReset (){
+        counter = 0;
+    }
     //Start of setters
     public void setTaxID1(int taxID1) {
         this.taxID1 = taxID1;
@@ -112,6 +121,12 @@ public class Gene {
     public void setGeneRIFText(String geneRIFText) {
         this.geneRIFText = geneRIFText;
     }
+
+    public static void setCounter(int counter) {
+        Gene.counter = counter;
+    }
+    
+    
     //End of setters
     //Start of getters
     public int getTaxID1() {
@@ -160,6 +175,10 @@ public class Gene {
 
     public String getGeneRIFText() {
         return geneRIFText;
+    }
+
+    public static int getCounter() {
+        return counter;
     }
     //End of getters
     

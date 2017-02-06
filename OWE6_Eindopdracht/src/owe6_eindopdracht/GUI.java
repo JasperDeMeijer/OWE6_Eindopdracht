@@ -38,13 +38,20 @@ public class GUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonOpen = new javax.swing.JButton();
         jButtonBlader = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jButtonExportGenes = new javax.swing.JButton();
         jButtonExportPubMed = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabelTaxID1 = new javax.swing.JLabel();
+        jLabelTaxID2 = new javax.swing.JLabel();
+        jLabelAmountOfInteractions = new javax.swing.JLabel();
+        jLabelUniqueInteractions = new javax.swing.JLabel();
+        jLabelUniqueInteractionsAmount = new javax.swing.JLabel();
+        jLabelTotalInteractionsAmount = new javax.swing.JLabel();
+        jLabelTaxID2Amount = new javax.swing.JLabel();
+        jLabelTaxID1Amount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,10 +70,6 @@ public class GUI extends javax.swing.JFrame {
                 jButtonBladerActionPerformed(evt);
             }
         });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.setBackground(new java.awt.Color(181, 171, 161));
         jPanel1.setForeground(new java.awt.Color(35, 23, 23));
@@ -91,6 +94,65 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(152, 152, 152));
+
+        jLabelTaxID1.setText("Tax ID 1:");
+
+        jLabelTaxID2.setText("Tax ID 2:");
+
+        jLabelAmountOfInteractions.setText("Amount of Interactions:");
+
+        jLabelUniqueInteractions.setText("Unique interactions:");
+
+        jLabelUniqueInteractionsAmount.setText("#");
+
+        jLabelTotalInteractionsAmount.setText("#");
+
+        jLabelTaxID2Amount.setText("#");
+
+        jLabelTaxID1Amount.setText("#");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelUniqueInteractions)
+                    .addComponent(jLabelAmountOfInteractions)
+                    .addComponent(jLabelTaxID2)
+                    .addComponent(jLabelTaxID1))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTaxID1Amount)
+                    .addComponent(jLabelTaxID2Amount)
+                    .addComponent(jLabelTotalInteractionsAmount)
+                    .addComponent(jLabelUniqueInteractionsAmount))
+                .addContainerGap(287, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTaxID1)
+                    .addComponent(jLabelTaxID1Amount))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTaxID2)
+                    .addComponent(jLabelTaxID2Amount))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelTotalInteractionsAmount)
+                    .addComponent(jLabelAmountOfInteractions, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelUniqueInteractions)
+                    .addComponent(jLabelUniqueInteractionsAmount))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,13 +162,14 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, 0, 219, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jTextField1))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBox2, 0, 219, Short.MAX_VALUE))
+                        .addComponent(jTextField1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -116,7 +179,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jButtonExportGenes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonExportPubMed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,8 +191,8 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jButtonOpen)
                     .addComponent(jButtonBlader))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,12 +213,16 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenActionPerformed
+        //The path selected or entered in the pathway textfield is used and the file will be opened. 
+        //All the lines except for the header will be returned
         FileProcessing input = new FileProcessing();
         ArrayList<String> linesTemporary;
         linesTemporary = input.FileRead(jTextField1.getText());
+        Gene resetCounter = new Gene();
+        resetCounter.CounterReset();
         
         ArrayList<Gene> geneList = new ArrayList<>();
-        
+        //Creating an Arraylist of gene objects with the temporary lines splitted on tab indentation.
         for(String line: linesTemporary){
             String[] lineSplit = line.split("\t");
             int taxID1 = Integer.parseInt(lineSplit[0]);
@@ -164,14 +231,37 @@ public class GUI extends javax.swing.JFrame {
                                   lineSplit[10], lineSplit[11]));
         }
         
+        //Retrieving a set of unique interactions. 
         Interactions uniqueSetInstance = new Interactions();
         Set<String> uniqueList = new HashSet<>();
         uniqueList = uniqueSetInstance.uniqueInteractions(geneList);
         
+        //Adding the unique interactions to both of the dropdown (combobox) menu's
         for(String i: uniqueList){
             jComboBox1.addItem(i);
             jComboBox2.addItem(i);
         }
+        //Retrieving statistics based on the file
+        Statistics stat1 = new Statistics();
+        int amountGeneIDs1 = stat1.CountUniqueGeneIDs1(geneList);
+        int amountGeneIDs2 = stat1.CountUniqueGeneIDs2(geneList);
+        int uniqueInteractions = stat1.CountUniqueInteractions(geneList);
+        //For the amount of interactions a static counter in class Gene is used.
+        int amountOfInteractions = Gene.getCounter();
+        
+        //Adding the statistics to the corresponding labels(When the open button is pressed, the statistics will be shown in the GUI)
+        jLabelTaxID1Amount.setText(Integer.toString(amountGeneIDs1));
+        jLabelTaxID2Amount.setText(Integer.toString(amountGeneIDs2));
+        jLabelTotalInteractionsAmount.setText(Integer.toString(amountOfInteractions));
+        jLabelUniqueInteractionsAmount.setText(Integer.toString(uniqueInteractions));
+        
+        
+        
+        
+        
+       
+        
+        
         
             
             
@@ -201,9 +291,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelAmountOfInteractions;
+    private javax.swing.JLabel jLabelTaxID1;
+    private javax.swing.JLabel jLabelTaxID1Amount;
+    private javax.swing.JLabel jLabelTaxID2;
+    private javax.swing.JLabel jLabelTaxID2Amount;
+    private javax.swing.JLabel jLabelTotalInteractionsAmount;
+    private javax.swing.JLabel jLabelUniqueInteractions;
+    private javax.swing.JLabel jLabelUniqueInteractionsAmount;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     
