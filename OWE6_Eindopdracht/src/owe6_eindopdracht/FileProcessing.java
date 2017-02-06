@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
@@ -26,7 +27,8 @@ import javax.swing.JFileChooser;
 public class FileProcessing {
     private String pathSelectedFile;
     private BufferedReader inFile1;
-    
+    private int counterUnique;
+    private HashMap interactionShortPhraseMap = new HashMap();
     public String FileChooser() {
         
 
@@ -66,15 +68,37 @@ public class FileProcessing {
         
         return lines;
     }
-    public LinkedList<String> OverlapListBuilder(String interactionShortPhrase, ArrayList<Gene> geneList){
-        LinkedList<String> overlapList = new LinkedList<>();
+    public void OverlapListBuilder(String interactionShortPhrase, ArrayList<Gene> geneList){
+        counterUnique = 0;
+        int counter = 0;
         for(Gene gene : geneList){
             if (gene.getInteractionShortPhrase().equals(interactionShortPhrase)){
-                overlapList.add(Integer.toString(gene.getGeneID1()));
+                interactionShortPhraseMap.put(counter, gene.getGeneID1());
+                counterUnique++;
+                
+                
             }
+            counter++;
         }
-        return overlapList;
+        
     }
+    
+    public void setOverlapListBuilder(HashMap interactionShortPhrase){
+        this.interactionShortPhraseMap = interactionShortPhrase;
+    }
+
+    public void setCounterUnique(int counterUnique) {
+        this.counterUnique = counterUnique;
+    }
+
+    public int getCounterUnique() {
+        return counterUnique;
+    }
+    
+    public HashMap getOverlapListBuilder(){
+        return interactionShortPhraseMap;
+    }
+    
     
     
     

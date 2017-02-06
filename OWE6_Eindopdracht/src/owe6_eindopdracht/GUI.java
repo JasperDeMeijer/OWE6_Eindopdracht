@@ -7,6 +7,7 @@ package owe6_eindopdracht;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
@@ -24,6 +25,7 @@ public class GUI extends javax.swing.JFrame {
     
     public GUI() {
         initComponents();
+        
     }
 
     /**
@@ -42,6 +44,9 @@ public class GUI extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
+        jLabelUniek1 = new javax.swing.JLabel();
+        jLabelOverlap = new javax.swing.JLabel();
+        jLabelUniek2 = new javax.swing.JLabel();
         jButtonExportGenes = new javax.swing.JButton();
         jButtonExportPubMed = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -53,6 +58,7 @@ public class GUI extends javax.swing.JFrame {
         jLabelTotalInteractionsAmount = new javax.swing.JLabel();
         jLabelTaxID2Amount = new javax.swing.JLabel();
         jLabelTaxID1Amount = new javax.swing.JLabel();
+        jButtonAnalyze = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,24 +78,35 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Interaction" }));
 
-        jPanel1.setBackground(new java.awt.Color(181, 171, 161));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Interaction" }));
+
+        jPanel1.setBackground(new java.awt.Color(152, 152, 152));
         jPanel1.setForeground(new java.awt.Color(35, 23, 23));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jLabelUniek1)
+                .addGap(87, 87, 87)
+                .addComponent(jLabelOverlap)
+                .addGap(86, 86, 86)
+                .addComponent(jLabelUniek2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 186, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelUniek1)
+                    .addComponent(jLabelOverlap)
+                    .addComponent(jLabelUniek2))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jButtonExportGenes.setText("Export Genes");
@@ -136,7 +153,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabelTaxID2Amount)
                     .addComponent(jLabelTotalInteractionsAmount)
                     .addComponent(jLabelUniqueInteractionsAmount))
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,6 +177,13 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        jButtonAnalyze.setText("Analyze");
+        jButtonAnalyze.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnalyzeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,13 +194,12 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox2, 0, 219, Short.MAX_VALUE))
-                        .addComponent(jTextField1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox2, 0, 294, Short.MAX_VALUE))
+                    .addComponent(jTextField1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -184,9 +207,10 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBlader))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButtonAnalyze, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonExportGenes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonExportPubMed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,10 +231,12 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonAnalyze)
+                        .addGap(3, 3, 3)
                         .addComponent(jButtonExportGenes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonExportPubMed)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jButtonOpen.getAccessibleContext().setAccessibleName("jOpen");
@@ -246,11 +272,7 @@ public class GUI extends javax.swing.JFrame {
         Set<String> uniqueList = new HashSet<>();
         uniqueList = uniqueSetInstance.uniqueInteractions(geneList);
         
-        //Adding the unique interactions to both of the dropdown (combobox) menu's
-        for(String i: uniqueList){
-            jComboBox1.addItem(i);
-            jComboBox2.addItem(i);
-        }
+        
         //Retrieving statistics based on the file
         Statistics stat1 = new Statistics();
         int amountGeneIDs1 = stat1.CountUniqueGeneIDs1(geneList);
@@ -264,6 +286,15 @@ public class GUI extends javax.swing.JFrame {
         jLabelTaxID2Amount.setText(Integer.toString(amountGeneIDs2));
         jLabelTotalInteractionsAmount.setText(Integer.toString(amountOfInteractions));
         jLabelUniqueInteractionsAmount.setText(Integer.toString(uniqueInteractions));
+        
+        //Adding the unique interactions to both of the dropdown (combobox) menu's
+        
+       
+        
+        for(String i: uniqueList){
+            jComboBox1.addItem(i);
+            jComboBox2.addItem(i);
+        }
         
         
         
@@ -288,12 +319,31 @@ public class GUI extends javax.swing.JFrame {
         jTextField1.setText(fp.FileChooser());
     }//GEN-LAST:event_jButtonBladerActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jButtonAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalyzeActionPerformed
+        String selectedShortPhrase1 = (String) jComboBox1.getSelectedItem();
+        System.out.println(selectedShortPhrase1);
+        fp1.OverlapListBuilder(selectedShortPhrase1, geneList);
         
-        String selectedShortPhrase = (String) jComboBox1.getSelectedItem();
-        fp1.OverlapListBuilder(selectedShortPhrase, geneList);
-       
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        String selectedShortPhrase2 = (String) jComboBox2.getSelectedItem();
+        fp2.OverlapListBuilder(selectedShortPhrase2, geneList);
+        
+        HashMap OverlapListCombobox1 = fp1.getOverlapListBuilder();
+        HashMap OverlapListCombobox2 = fp2.getOverlapListBuilder();
+        int size = OverlapListCombobox1.size();
+        int size2 = OverlapListCombobox2.size();
+        System.out.println(size);
+        System.out.println(size2);
+      
+        (OverlapListCombobox1.values()).retainAll((OverlapListCombobox2.values()));
+        System.out.println(OverlapListCombobox1.size());
+        int uniek1 = (size) - (OverlapListCombobox1.size());
+        int uniek2 = (size2) - (OverlapListCombobox1.size());
+        
+        jLabelUniek1.setText(Integer.toString(uniek1));
+        jLabelUniek2.setText(Integer.toString(uniek2));
+        jLabelOverlap.setText(Integer.toString(OverlapListCombobox1.size()));
+        
+    }//GEN-LAST:event_jButtonAnalyzeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,6 +351,7 @@ public class GUI extends javax.swing.JFrame {
     
     //GUI variables
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAnalyze;
     private javax.swing.JButton jButtonBlader;
     private javax.swing.JButton jButtonExportGenes;
     private javax.swing.JButton jButtonExportPubMed;
@@ -309,11 +360,14 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAmountOfInteractions;
+    private javax.swing.JLabel jLabelOverlap;
     private javax.swing.JLabel jLabelTaxID1;
     private javax.swing.JLabel jLabelTaxID1Amount;
     private javax.swing.JLabel jLabelTaxID2;
     private javax.swing.JLabel jLabelTaxID2Amount;
     private javax.swing.JLabel jLabelTotalInteractionsAmount;
+    private javax.swing.JLabel jLabelUniek1;
+    private javax.swing.JLabel jLabelUniek2;
     private javax.swing.JLabel jLabelUniqueInteractions;
     private javax.swing.JLabel jLabelUniqueInteractionsAmount;
     private javax.swing.JPanel jPanel1;
@@ -322,8 +376,9 @@ public class GUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     //Added variables
     private ArrayList<Gene> geneList = new ArrayList<>();
-    private FileProcessing fp1;
-    private FileProcessing fp2;
+    private FileProcessing fp1 = new FileProcessing();
+    private FileProcessing fp2 = new FileProcessing();
+    
     
     
 }  
