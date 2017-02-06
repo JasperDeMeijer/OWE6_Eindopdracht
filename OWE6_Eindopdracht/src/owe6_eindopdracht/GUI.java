@@ -5,11 +5,14 @@
  */
 package owe6_eindopdracht;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -43,13 +46,13 @@ public class GUI extends javax.swing.JFrame {
         jButtonBlader = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelVenn = new javax.swing.JPanel();
         jLabelUniek1 = new javax.swing.JLabel();
         jLabelOverlap = new javax.swing.JLabel();
         jLabelUniek2 = new javax.swing.JLabel();
         jButtonExportGenes = new javax.swing.JButton();
         jButtonExportPubMed = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelStats = new javax.swing.JPanel();
         jLabelTaxID1 = new javax.swing.JLabel();
         jLabelTaxID2 = new javax.swing.JLabel();
         jLabelAmountOfInteractions = new javax.swing.JLabel();
@@ -82,34 +85,39 @@ public class GUI extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Interaction" }));
 
-        jPanel1.setBackground(new java.awt.Color(152, 152, 152));
-        jPanel1.setForeground(new java.awt.Color(35, 23, 23));
+        jPanelVenn.setBackground(new java.awt.Color(152, 152, 152));
+        jPanelVenn.setForeground(new java.awt.Color(35, 23, 23));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelVennLayout = new javax.swing.GroupLayout(jPanelVenn);
+        jPanelVenn.setLayout(jPanelVennLayout);
+        jPanelVennLayout.setHorizontalGroup(
+            jPanelVennLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelVennLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(jLabelUniek1)
                 .addGap(87, 87, 87)
                 .addComponent(jLabelOverlap)
                 .addGap(86, 86, 86)
                 .addComponent(jLabelUniek2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelVennLayout.setVerticalGroup(
+            jPanelVennLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelVennLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelVennLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelUniek1)
                     .addComponent(jLabelOverlap)
                     .addComponent(jLabelUniek2))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jButtonExportGenes.setText("Export Genes");
+        jButtonExportGenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExportGenesActionPerformed(evt);
+            }
+        });
 
         jButtonExportPubMed.setText("Export PubMed ");
         jButtonExportPubMed.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +126,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(152, 152, 152));
+        jPanelStats.setBackground(new java.awt.Color(152, 152, 152));
 
         jLabelTaxID1.setText("Tax ID 1:");
 
@@ -136,42 +144,42 @@ public class GUI extends javax.swing.JFrame {
 
         jLabelTaxID1Amount.setText("#");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelStatsLayout = new javax.swing.GroupLayout(jPanelStats);
+        jPanelStats.setLayout(jPanelStatsLayout);
+        jPanelStatsLayout.setHorizontalGroup(
+            jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelStatsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelUniqueInteractions)
                     .addComponent(jLabelAmountOfInteractions)
                     .addComponent(jLabelTaxID2)
                     .addComponent(jLabelTaxID1))
                 .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTaxID1Amount)
                     .addComponent(jLabelTaxID2Amount)
                     .addComponent(jLabelTotalInteractionsAmount)
                     .addComponent(jLabelUniqueInteractionsAmount))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPanelStatsLayout.setVerticalGroup(
+            jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelStatsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTaxID1)
                     .addComponent(jLabelTaxID1Amount))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTaxID2)
                     .addComponent(jLabelTaxID2Amount))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelTotalInteractionsAmount)
                     .addComponent(jLabelAmountOfInteractions, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelUniqueInteractions)
                     .addComponent(jLabelUniqueInteractionsAmount))
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -193,23 +201,23 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelStats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox2, 0, 294, Short.MAX_VALUE))
                     .addComponent(jTextField1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonOpen)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBlader))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButtonAnalyze, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonExportGenes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonExportPubMed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanelVenn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonAnalyze, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonExportGenes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonExportPubMed, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonOpen)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonBlader)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -222,21 +230,21 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jButtonOpen)
                     .addComponent(jButtonBlader))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelStats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonAnalyze)
-                        .addGap(3, 3, 3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonExportGenes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonExportPubMed)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addComponent(jButtonExportPubMed))
+                    .addComponent(jPanelVenn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jButtonOpen.getAccessibleContext().setAccessibleName("jOpen");
@@ -248,7 +256,7 @@ public class GUI extends javax.swing.JFrame {
     private void jButtonOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenActionPerformed
         //The path selected or entered in the pathway textfield is used and the file will be opened. 
         //All the lines except for the header will be returned
-        FileProcessing input = new FileProcessing();
+        input = new FileProcessing();
         ArrayList<String> linesTemporary;
         linesTemporary = input.FileRead(jTextField1.getText());
         Gene resetCounter = new Gene();
@@ -311,7 +319,17 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonOpenActionPerformed
 
     private void jButtonExportPubMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportPubMedActionPerformed
-        // TODO add your handling code here:
+        Map <Integer, String> overlapMap = inter.getCalculatingOverlap();
+        exportList.clear();
+        for(int key: overlapMap.keySet()){
+            if((geneList.get(key)).getPubMedID() != ""){
+                exportList.add(geneList.get(key));  
+            }
+        }
+        String path = fp1.FileChooser();
+        ExportingResults exportGenes = new ExportingResults();
+        exportGenes.ExportAllPubMeds(exportList, input.getHeader(), path);
+        
     }//GEN-LAST:event_jButtonExportPubMedActionPerformed
 
     private void jButtonBladerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBladerActionPerformed
@@ -320,38 +338,48 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBladerActionPerformed
 
     private void jButtonAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalyzeActionPerformed
+        //Creating and retrieving two Hashmaps, the two Hashmaps contain the selected interactions. 
         String selectedShortPhrase1 = (String) jComboBox1.getSelectedItem();
-        System.out.println(selectedShortPhrase1);
         fp1.OverlapListBuilder(selectedShortPhrase1, geneList);
-        
         String selectedShortPhrase2 = (String) jComboBox2.getSelectedItem();
         fp2.OverlapListBuilder(selectedShortPhrase2, geneList);
-        
         HashMap OverlapListCombobox1 = fp1.getOverlapListBuilder();
         HashMap OverlapListCombobox2 = fp2.getOverlapListBuilder();
         int uniqueSizeTemporary = OverlapListCombobox1.size();
         int uniqueSize2Temporary = OverlapListCombobox2.size();
         
-      
-        (OverlapListCombobox1.values()).retainAll((OverlapListCombobox2.values()));
-        ;
+        //Calculating the overlap between the two HashMaps which contain the selected interactions.
+         Map <Integer, String> overlapMap = inter.CalculatingOverlap(OverlapListCombobox1, OverlapListCombobox2);
+        
+        
         //Defining the amount of overlapping genes and the amount of unique genes.
-        int overlapSize = OverlapListCombobox1.size();
+        int overlapSize = overlapMap.size();
         int unique1Size = (uniqueSizeTemporary) - (overlapSize);
         int unique2Size = (uniqueSize2Temporary) - (overlapSize);
-        System.out.println("niet berekende herrie");
-        System.out.println(uniqueSizeTemporary);
-        System.out.println(uniqueSize2Temporary);
-        System.out.println("berekende herrie:");
-        System.out.println(overlapSize);
-        System.out.println(unique1Size);
-        System.out.println(unique2Size);
+    
         //Setting the labels for the Venn diagrams 
         jLabelUniek1.setText(Integer.toString(unique1Size));
         jLabelUniek2.setText(Integer.toString(unique2Size));
         jLabelOverlap.setText(Integer.toString(overlapSize));
         
+        //Drawing the Venn Diagram.
+        Graphics drawPaper = jPanelVenn.getGraphics();
+        drawPaper.setColor(Color.RED);
+        drawPaper.drawOval(100, 32, 210, 100);
+         
     }//GEN-LAST:event_jButtonAnalyzeActionPerformed
+
+    private void jButtonExportGenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportGenesActionPerformed
+        Map <Integer, String> overlapMap = inter.getCalculatingOverlap();
+        exportList.clear();
+        for(int key: overlapMap.keySet()){
+            exportList.add(geneList.get(key));  
+        }
+        ExportingResults exportGenes = new ExportingResults();
+        String path = fp1.FileChooser();
+        exportGenes.ExportAllOverlap(exportList, input.getHeader(), path );
+        
+    }//GEN-LAST:event_jButtonExportGenesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,16 +406,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelUniek2;
     private javax.swing.JLabel jLabelUniqueInteractions;
     private javax.swing.JLabel jLabelUniqueInteractionsAmount;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelStats;
+    private javax.swing.JPanel jPanelVenn;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     //Added variables
     private ArrayList<Gene> geneList = new ArrayList<>();
     private FileProcessing fp1 = new FileProcessing();
     private FileProcessing fp2 = new FileProcessing();
-    
-    
-    
+    private Interactions inter = new Interactions();
+    private ArrayList<Gene> exportList = new ArrayList<>();
+    private FileProcessing input = new FileProcessing();
 }  
 

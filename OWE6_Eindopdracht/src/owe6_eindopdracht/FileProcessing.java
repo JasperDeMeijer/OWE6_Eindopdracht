@@ -29,6 +29,8 @@ public class FileProcessing {
     private BufferedReader inFile1;
     private int counterUnique;
     private HashMap interactionShortPhraseMap = new HashMap();
+    private String header;
+    
     public String FileChooser() {
         
 
@@ -43,16 +45,15 @@ public class FileProcessing {
     }
     
     public ArrayList<String> FileRead(String filePath){
-          int counter = 0;
+        
         String regel;
         ArrayList<String> lines = new ArrayList<>();
         try {
             inFile1 = new BufferedReader(new FileReader(filePath));
             
             while ((regel = inFile1.readLine()) != null){
-                if(counter == 0){
-                    String header = regel;
-                    counter++;
+                if(regel.contains("#")){
+                    header = regel;
                 } else{
                     lines.add(regel);
                 }
@@ -91,6 +92,18 @@ public class FileProcessing {
     public void setCounterUnique(int counterUnique) {
         this.counterUnique = counterUnique;
     }
+    
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    
+    
+    
 
     public int getCounterUnique() {
         return counterUnique;
