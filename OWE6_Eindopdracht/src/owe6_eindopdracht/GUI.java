@@ -329,19 +329,27 @@ public class GUI extends javax.swing.JFrame {
         
         HashMap OverlapListCombobox1 = fp1.getOverlapListBuilder();
         HashMap OverlapListCombobox2 = fp2.getOverlapListBuilder();
-        int size = OverlapListCombobox1.size();
-        int size2 = OverlapListCombobox2.size();
-        System.out.println(size);
-        System.out.println(size2);
+        int uniqueSizeTemporary = OverlapListCombobox1.size();
+        int uniqueSize2Temporary = OverlapListCombobox2.size();
+        
       
         (OverlapListCombobox1.values()).retainAll((OverlapListCombobox2.values()));
-        System.out.println(OverlapListCombobox1.size());
-        int uniek1 = (size) - (OverlapListCombobox1.size());
-        int uniek2 = (size2) - (OverlapListCombobox1.size());
-        
-        jLabelUniek1.setText(Integer.toString(uniek1));
-        jLabelUniek2.setText(Integer.toString(uniek2));
-        jLabelOverlap.setText(Integer.toString(OverlapListCombobox1.size()));
+        ;
+        //Defining the amount of overlapping genes and the amount of unique genes.
+        int overlapSize = OverlapListCombobox1.size();
+        int unique1Size = (uniqueSizeTemporary) - (overlapSize);
+        int unique2Size = (uniqueSize2Temporary) - (overlapSize);
+        System.out.println("niet berekende herrie");
+        System.out.println(uniqueSizeTemporary);
+        System.out.println(uniqueSize2Temporary);
+        System.out.println("berekende herrie:");
+        System.out.println(overlapSize);
+        System.out.println(unique1Size);
+        System.out.println(unique2Size);
+        //Setting the labels for the Venn diagrams 
+        jLabelUniek1.setText(Integer.toString(unique1Size));
+        jLabelUniek2.setText(Integer.toString(unique2Size));
+        jLabelOverlap.setText(Integer.toString(overlapSize));
         
     }//GEN-LAST:event_jButtonAnalyzeActionPerformed
 

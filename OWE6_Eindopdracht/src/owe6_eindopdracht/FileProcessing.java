@@ -69,6 +69,7 @@ public class FileProcessing {
         return lines;
     }
     public void OverlapListBuilder(String interactionShortPhrase, ArrayList<Gene> geneList){
+        interactionShortPhraseMap.clear();
         counterUnique = 0;
         int counter = 0;
         for(Gene gene : geneList){
