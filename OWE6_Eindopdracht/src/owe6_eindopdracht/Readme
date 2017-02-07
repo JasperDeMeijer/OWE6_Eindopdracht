@@ -4,5 +4,5 @@ For running the program run the main class: OWE6_Eindopdracht.java
 Known bugs:
 *when creating the VennDiagramm the used Jpanel expands a bit.
 *When the VennDiagramm is created and a dropdown menu is opened the part where the dropdown
-overlaps with the venndiagramm the VennDiagramm disappears(will be returned when the use presses
+overlaps with the venndiagramm the VennDiagramm disappears(will be returned when the user presses
 analyze again).
