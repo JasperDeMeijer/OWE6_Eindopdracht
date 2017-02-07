@@ -19,19 +19,28 @@ import javax.swing.JOptionPane;
  * @author jdm
  */
 public class ExportingResults {
+
     private FileWriter file;
     private BufferedWriter buffered;
-   
-   
-    public void ExportGenes(ArrayList <Gene> exportList, String header, String filePath){
+
+    /**
+     *
+     * @param exportList    (List of genes to be exported)
+     * @param header        (This string will be used as header in the exported file)
+     * @param filePath      (Selected path for export)
+     * Makes a new file with a given header and every gene in the export list.
+     * Maintains the order of the original file. 
+     * Catches IOExceptions
+     */
+    public void ExportGenes(ArrayList<Gene> exportList, String header, String filePath) {
         
         try {
             file = new FileWriter(filePath);
             buffered = new BufferedWriter(file);
-            ArrayList <Gene> exportListSorted = exportList;
+            ArrayList<Gene> exportListSorted = exportList;
             Collections.sort(exportListSorted);
             buffered.write(header + "\n");
-            for (Gene exportGene: exportList){
+            for (Gene exportGene : exportList) {
                 String taxID1 = Integer.toString(exportGene.getTaxID1());
                 String geneID1 = Integer.toString(exportGene.getTaxID1());
                 String productAccessionVersion1 = exportGene.getProductAccessionVersion1();
@@ -43,28 +52,26 @@ public class ExportingResults {
                 String pubMedID = exportGene.getPubMedID();
                 String lastUpdate = exportGene.getLastUpdate();
                 String geneRIFText = exportGene.getGeneRIFText();
-                buffered.write(taxID1 + "\t" + geneID1 + "\t" + productAccessionVersion1 + "\t" + interactionShortPhrase + "\t" + taxID2 + "\t" + geneID2 +
-                               "\t" + productAccessionVersion2 + "\t" + productName2 + "\t" + pubMedID + "\t" +lastUpdate + "\t" + geneRIFText + "\n"  );
-                 
-            
+                buffered.write(taxID1 + "\t" + geneID1 + "\t" + productAccessionVersion1 + "\t" + interactionShortPhrase + "\t" + taxID2 + "\t" + geneID2
+                        + "\t" + productAccessionVersion2 + "\t" + productName2 + "\t" + pubMedID + "\t" + lastUpdate + "\t" + geneRIFText + "\n");
+
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Er heeft zich een input/output error voorgedaan", "Error Message",
-                        JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
-                if (buffered != null){
+                if (buffered != null) {
                     buffered.close();
                 }
-                if (file != null){
+                if (file != null) {
                     file.close();
                 }
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Er heeft zich een input/output error voorgedaan", "Error Message",
                         JOptionPane.ERROR_MESSAGE);
             }
-            
-            
+
         }
     }
 }

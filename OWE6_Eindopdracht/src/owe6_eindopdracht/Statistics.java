@@ -15,6 +15,13 @@ import java.util.Set;
  */
 public class Statistics {
     
+    /**
+     *
+     * @param genes list of genes
+     * @return a int with the amount of unique genes
+     * iterates over the ArrayList containing objects "Gene". Every object is 
+     * added to a set. determining the size of the set gives the amount of unique genes.
+     */
     public int CountUniqueGeneIDs1(ArrayList<Gene> genes){
        
         Set<Integer> uniqueGeneIDs = new HashSet<>();
@@ -25,7 +32,13 @@ public class Statistics {
         return amountUniqueGeneIDs;
     }
     
-    
+    /**
+     *
+     * @param genes list of genes
+     * @return a int with the amount of unique genes
+     * iterates over the ArrayList containing objects "Gene". Every object is 
+     * added to a set. determining the size of the set gives the amount of unique genes.
+     */
     public int CountUniqueGeneIDs2(ArrayList<Gene> genes){
        
         Set<Integer> uniqueGeneIDs = new HashSet<>();
@@ -36,6 +49,14 @@ public class Statistics {
         return amountUniqueGeneIDs;
     }
     
+    
+    /**
+     *
+     * @param genes list of genes
+     * @return a int with the amount of unique interactions
+     * iterates over the ArrayList containing objects "Gene". Every object is 
+     * added to a set. determining the size of the set gives the amount of unique interactions.
+     */
     public int CountUniqueInteractions(ArrayList<Gene> genes){
         
         Set<String> uniqueInteractions = new HashSet<>();

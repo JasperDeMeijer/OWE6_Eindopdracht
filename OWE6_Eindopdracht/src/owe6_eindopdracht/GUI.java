@@ -17,7 +17,6 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author jdm
@@ -27,10 +26,9 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    
     public GUI() {
         initComponents();
-        
+
     }
 
     /**
@@ -263,26 +261,24 @@ public class GUI extends javax.swing.JFrame {
         linesTemporary = input.FileRead(jTextField1.getText());
         Gene resetCounter = new Gene();
         resetCounter.CounterReset();
-        
+
         //Creating an Arraylist of gene objects with the temporary lines splitted on tab indentation.
-        
         //the list of genes will be cleared. Incase of the user pressing the open button several times 
         geneList.clear();
-        
-        for(String line: linesTemporary){
+        //for everyline in the file except the header a gene object is created.
+        for (String line : linesTemporary) {
             String[] lineSplit = line.split("\t");
             int taxID1 = Integer.parseInt(lineSplit[0]);
-            geneList.add(new Gene(Integer.parseInt(lineSplit[0]), Integer.parseInt(lineSplit[1]),lineSplit[2], lineSplit[3], lineSplit[4],
-                                  Integer.parseInt(lineSplit[5]), Integer.parseInt(lineSplit[6]), lineSplit[7], lineSplit[8], lineSplit[9], 
-                                  lineSplit[10], lineSplit[11]));
+            geneList.add(new Gene(Integer.parseInt(lineSplit[0]), Integer.parseInt(lineSplit[1]), lineSplit[2], lineSplit[3], lineSplit[4],
+                    Integer.parseInt(lineSplit[5]), Integer.parseInt(lineSplit[6]), lineSplit[7], lineSplit[8], lineSplit[9],
+                    lineSplit[10], lineSplit[11]));
         }
-        
+
         //Retrieving a set of unique interactions. 
         Interactions uniqueSetInstance = new Interactions();
         Set<String> uniqueList = new HashSet<>();
         uniqueList = uniqueSetInstance.uniqueInteractions(geneList);
-        
-        
+
         //Retrieving statistics based on the file
         Statistics stat1 = new Statistics();
         int amountGeneIDs1 = stat1.CountUniqueGeneIDs1(geneList);
@@ -290,34 +286,35 @@ public class GUI extends javax.swing.JFrame {
         int uniqueInteractions = stat1.CountUniqueInteractions(geneList);
         //For the amount of interactions a static counter in class Gene is used.
         int amountOfInteractions = Gene.getCounter();
-        
+
         //Adding the statistics to the corresponding labels(When the open button is pressed, the statistics will be shown in the GUI)
         jLabelTaxID1Amount.setText(Integer.toString(amountGeneIDs1));
         jLabelTaxID2Amount.setText(Integer.toString(amountGeneIDs2));
         jLabelTotalInteractionsAmount.setText(Integer.toString(amountOfInteractions));
         jLabelUniqueInteractionsAmount.setText(Integer.toString(uniqueInteractions));
-        
+
         //Adding the unique interactions to both of the dropdown (combobox) menu's
-        
-       
-        
-        for(String i: uniqueList){
+        for (String i : uniqueList) {
             jComboBox1.addItem(i);
             jComboBox2.addItem(i);
         }
-        
-    }//GEN-LAST:event_jButtonOpenActionPerformed
 
+    }//GEN-LAST:event_jButtonOpenActionPerformed
+    
+    
     private void jButtonExportPubMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportPubMedActionPerformed
-        try{
-            Map <Integer, String> overlapMap = inter.getCalculatingOverlap();
-            if(overlapMap.isEmpty()){
+        //Try's to export the genes that overlap and contain a PubMed relation
+        //Catches NullPointerException and a custom excepion in case the list of overlapping
+        //genes is empty.
+        try {
+            Map<Integer, String> overlapMap = inter.getCalculatingOverlap();
+            if (overlapMap.isEmpty()) {
                 throw new EmptyGeneListException();
-            }else{
+            } else {
                 exportList.clear();
-                for(int key: overlapMap.keySet()){
-                    if((geneList.get(key)).getPubMedID() != ""){
-                        exportList.add(geneList.get(key));  
+                for (int key : overlapMap.keySet()) {
+                    if ((geneList.get(key)).getPubMedID() != "") {
+                        exportList.add(geneList.get(key));
                     }
                 }
                 String path = "ExportPubMed.txt";
@@ -325,82 +322,96 @@ public class GUI extends javax.swing.JFrame {
 
                 exportGenes.ExportGenes(exportList, input.getHeader(), path);
             }
-                    
-        } catch(NullPointerException ex){
-             JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
-                        JOptionPane.ERROR_MESSAGE);
-        } catch(EmptyGeneListException ex){
-             JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
-                        JOptionPane.ERROR_MESSAGE);
-        }    
-        
+
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (EmptyGeneListException ex) {
+            JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButtonExportPubMedActionPerformed
 
     private void jButtonBladerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBladerActionPerformed
+        //Opens a filechooser and returns the selected file path.
         FileProcessing fp = new FileProcessing();
         jTextField1.setText(fp.FileChooser());
     }//GEN-LAST:event_jButtonBladerActionPerformed
 
     private void jButtonAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalyzeActionPerformed
-        //Creating and retrieving two Hashmaps, the two Hashmaps contain the selected interactions. 
+        //Creating and retrieving two Hashmaps, the two Hashmaps containing 
+        //the gene ID's of the selected interactions. 
         String selectedShortPhrase1 = (String) jComboBox1.getSelectedItem();
         fp1.OverlapListBuilder(selectedShortPhrase1, geneList);
         String selectedShortPhrase2 = (String) jComboBox2.getSelectedItem();
         fp2.OverlapListBuilder(selectedShortPhrase2, geneList);
         HashMap OverlapListCombobox1 = fp1.getOverlapListBuilder();
         HashMap OverlapListCombobox2 = fp2.getOverlapListBuilder();
+        //The length of the the lists containing the gene ID1's of the selected interactions
         int uniqueSizeTemporary = OverlapListCombobox1.size();
         int uniqueSize2Temporary = OverlapListCombobox2.size();
-        
+
         //Calculating the overlap between the two HashMaps which contain the selected interactions.
-         Map <Integer, String> overlapMap = inter.CalculatingOverlap(OverlapListCombobox1, OverlapListCombobox2);
-        
-        
+        Map<Integer, String> overlapMap = inter.CalculatingOverlap(OverlapListCombobox1, OverlapListCombobox2);
+
         //Defining the amount of overlapping genes and the amount of unique genes.
+        
         int overlapSize = overlapMap.size();
         int unique1Size = (uniqueSizeTemporary) - (overlapSize);
         int unique2Size = (uniqueSize2Temporary) - (overlapSize);
-    
+        System.out.println(overlapSize);
+        System.out.println(unique1Size);
+        System.out.println(unique2Size);
+        System.out.println("niet berekend");
+        System.out.println(overlapMap.size());
+        System.out.println(uniqueSizeTemporary);
+        System.out.println(uniqueSize2Temporary);
+        
+        
+
         //Setting the labels for the Venn diagrams 
         jLabelUniek1.setText(Integer.toString(unique1Size));
         jLabelUniek2.setText(Integer.toString(unique2Size));
         jLabelOverlap.setText(Integer.toString(overlapSize));
-        
+
         //Drawing the Venn Diagram.
         Graphics drawPaper = jPanelVenn.getGraphics();
         drawPaper.setColor(Color.RED);
         drawPaper.drawOval(110, 32, 210, 100);
         drawPaper.drawOval(20, 32, 210, 100);
-         
+
     }//GEN-LAST:event_jButtonAnalyzeActionPerformed
 
     private void jButtonExportGenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportGenesActionPerformed
-        try{
-            Map <Integer, String> overlapMap = inter.getCalculatingOverlap();
-            if(overlapMap.isEmpty()){
+        //Try's to export the genes that overlap 
+        //Catches NullPointerException and a custom excepion in case the list of overlapping
+        //genes is empty.
+        try {
+            Map<Integer, String> overlapMap = inter.getCalculatingOverlap();
+            if (overlapMap.isEmpty()) {
                 throw new EmptyGeneListException();
             }
             exportList.clear();
-            for(int key: overlapMap.keySet()){
-                exportList.add(geneList.get(key));  
+            for (int key : overlapMap.keySet()) {
+                exportList.add(geneList.get(key));
             }
 
             ExportingResults exportGenes = new ExportingResults();
             String path = "ExportTest2.txt";
-            exportGenes.ExportGenes(exportList, input.getHeader(), path );
-        } catch(NullPointerException ex) {
+            exportGenes.ExportGenes(exportList, input.getHeader(), path);
+        } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren ", "Error Message",
-                        JOptionPane.ERROR_MESSAGE);
-        }catch(EmptyGeneListException ex){
-             JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
-                        JOptionPane.ERROR_MESSAGE);
-        }     
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (EmptyGeneListException ex) {
+            JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExportGenesActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
     //GUI variables
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnalyze;
@@ -433,5 +444,4 @@ public class GUI extends javax.swing.JFrame {
     private Interactions inter = new Interactions();
     private ArrayList<Gene> exportList = new ArrayList<>();
     private FileProcessing input = new FileProcessing();
-}  
-
+}

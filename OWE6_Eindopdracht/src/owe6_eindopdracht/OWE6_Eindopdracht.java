@@ -8,6 +8,8 @@ package owe6_eindopdracht;
 /**
  *
  * @author jdm
+ * Main class
+ * Run this class to run the program
  */
 public class OWE6_Eindopdracht {
 

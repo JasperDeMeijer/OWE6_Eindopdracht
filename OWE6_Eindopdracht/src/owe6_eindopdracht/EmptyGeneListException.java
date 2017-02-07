@@ -11,6 +11,9 @@ package owe6_eindopdracht;
  */
 public class EmptyGeneListException extends Exception{
     
+    /**
+     *Creates an custom exception to cath an empty gene list. 
+     */
     public EmptyGeneListException (){
         
     }
