@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,9 +62,11 @@ public class FileProcessing {
             }
             
         } catch(FileNotFoundException ex){
-            Logger.getLogger(FileReader.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null, "Het Geselecteerde bestand is niet gevonden", "Error Message",
+                        JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex){
-            Logger.getLogger(FileReader.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Er heeft zich een input/output error voorgedaan", "Error Message",
+                        JOptionPane.ERROR_MESSAGE);
             
         }
         

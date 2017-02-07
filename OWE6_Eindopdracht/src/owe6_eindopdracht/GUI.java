@@ -7,6 +7,7 @@ package owe6_eindopdracht;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -304,31 +306,33 @@ public class GUI extends javax.swing.JFrame {
             jComboBox2.addItem(i);
         }
         
-        
-        
-        
-        
-       
-        
-        
-        
-            
-            
-        
-        
     }//GEN-LAST:event_jButtonOpenActionPerformed
 
     private void jButtonExportPubMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportPubMedActionPerformed
-        Map <Integer, String> overlapMap = inter.getCalculatingOverlap();
-        exportList.clear();
-        for(int key: overlapMap.keySet()){
-            if((geneList.get(key)).getPubMedID() != ""){
-                exportList.add(geneList.get(key));  
+        try{
+            Map <Integer, String> overlapMap = inter.getCalculatingOverlap();
+            if(overlapMap.isEmpty()){
+                throw new EmptyGeneListException();
+            }else{
+                exportList.clear();
+                for(int key: overlapMap.keySet()){
+                    if((geneList.get(key)).getPubMedID() != ""){
+                        exportList.add(geneList.get(key));  
+                    }
+                }
+                String path = "ExportPubMed.txt";
+                ExportingResults exportGenes = new ExportingResults();
+
+                exportGenes.ExportGenes(exportList, input.getHeader(), path);
             }
-        }
-        String path = fp1.FileChooser();
-        ExportingResults exportGenes = new ExportingResults();
-        exportGenes.ExportAllPubMeds(exportList, input.getHeader(), path);
+                    
+        } catch(NullPointerException ex){
+             JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
+                        JOptionPane.ERROR_MESSAGE);
+        } catch(EmptyGeneListException ex){
+             JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
+                        JOptionPane.ERROR_MESSAGE);
+        }    
         
     }//GEN-LAST:event_jButtonExportPubMedActionPerformed
 
@@ -365,20 +369,32 @@ public class GUI extends javax.swing.JFrame {
         //Drawing the Venn Diagram.
         Graphics drawPaper = jPanelVenn.getGraphics();
         drawPaper.setColor(Color.RED);
-        drawPaper.drawOval(100, 32, 210, 100);
+        drawPaper.drawOval(110, 32, 210, 100);
+        drawPaper.drawOval(20, 32, 210, 100);
          
     }//GEN-LAST:event_jButtonAnalyzeActionPerformed
 
     private void jButtonExportGenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportGenesActionPerformed
-        Map <Integer, String> overlapMap = inter.getCalculatingOverlap();
-        exportList.clear();
-        for(int key: overlapMap.keySet()){
-            exportList.add(geneList.get(key));  
-        }
-        ExportingResults exportGenes = new ExportingResults();
-        String path = fp1.FileChooser();
-        exportGenes.ExportAllOverlap(exportList, input.getHeader(), path );
-        
+        try{
+            Map <Integer, String> overlapMap = inter.getCalculatingOverlap();
+            if(overlapMap.isEmpty()){
+                throw new EmptyGeneListException();
+            }
+            exportList.clear();
+            for(int key: overlapMap.keySet()){
+                exportList.add(geneList.get(key));  
+            }
+
+            ExportingResults exportGenes = new ExportingResults();
+            String path = "ExportTest2.txt";
+            exportGenes.ExportGenes(exportList, input.getHeader(), path );
+        } catch(NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren ", "Error Message",
+                        JOptionPane.ERROR_MESSAGE);
+        }catch(EmptyGeneListException ex){
+             JOptionPane.showMessageDialog(null, "Er zijn geen overlappende genen om te exporteren (met een PubMed relatie)", "Error Message",
+                        JOptionPane.ERROR_MESSAGE);
+        }     
     }//GEN-LAST:event_jButtonExportGenesActionPerformed
 
     /**

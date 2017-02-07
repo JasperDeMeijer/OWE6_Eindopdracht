@@ -9,7 +9,7 @@ package owe6_eindopdracht;
  *
  * @author jdm
  */
-public class Gene {
+public class Gene implements Comparable<Gene> {
     //Start of variable declaration
     private static int counter;
     private int taxID1;
@@ -69,6 +69,12 @@ public class Gene {
         
     }
  **/
+    
+    @Override
+    public int compareTo(Gene compareID){
+        int compare = compareID.getGeneID1() - this.getGeneID1();
+        return compare;
+    }
     
     protected void CounterReset (){
         counter = 0;
