@@ -356,24 +356,17 @@ public class GUI extends javax.swing.JFrame {
         Map<Integer, String> overlapMap = inter.CalculatingOverlap(OverlapListCombobox1, OverlapListCombobox2);
 
         //Defining the amount of overlapping genes and the amount of unique genes.
-        
-        int overlapSize = overlapMap.size();
-        int unique1Size = (uniqueSizeTemporary) - (overlapSize);
-        int unique2Size = (uniqueSize2Temporary) - (overlapSize);
-        System.out.println(overlapSize);
-        System.out.println(unique1Size);
-        System.out.println(unique2Size);
-        System.out.println("niet berekend");
-        System.out.println(overlapMap.size());
-        System.out.println(uniqueSizeTemporary);
-        System.out.println(uniqueSize2Temporary);
-        
-        
+        int maxOverlap = (inter.getCalculatingOverlap()).size();
+        int overlapSize1 = inter.getUniqueMap1Size();
+        int overlapSize2 = inter.getUniqueMap2Size();
+        int unique1Size = (uniqueSizeTemporary) - (overlapSize1);
+        int unique2Size = (uniqueSize2Temporary) - (overlapSize2);
+       
 
         //Setting the labels for the Venn diagrams 
         jLabelUniek1.setText(Integer.toString(unique1Size));
         jLabelUniek2.setText(Integer.toString(unique2Size));
-        jLabelOverlap.setText(Integer.toString(overlapSize));
+        jLabelOverlap.setText(Integer.toString(maxOverlap));
 
         //Drawing the Venn Diagram.
         Graphics drawPaper = jPanelVenn.getGraphics();

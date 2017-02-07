@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+
 /**
  *
  * @author jdm
@@ -17,6 +18,8 @@ import java.util.Set;
  */
 public class Interactions {
     private HashMap overlapMap;
+    private int uniqueMap1Size;
+    private int uniqueMap2Size;
     
     /**
      *
@@ -40,13 +43,37 @@ public class Interactions {
      * @return Hashmap containing the overlapping geneID's
      * Uses retainall to remove every gene id that is not in map1 compared to map2
      * returns a Hashmap containing only the geneID's that are present in both hashmaps
+     * To compensate for the difference in retaining over the maps, both maps are retained.
+     * The amount of unique geneId's per Hashmap = (the original map x) - (corresponding retainall)
+     * 
      */
     public HashMap CalculatingOverlap(HashMap map1, HashMap map2){
+        HashMap tempo = map1;
+        
         (map1.values()).retainAll((map2.values()));
-        this.overlapMap = map1;
-        return map1;
+        (map2.values()).retainAll((tempo.values()));
+        this.uniqueMap1Size = map1.size();
+        this.uniqueMap2Size = map2.size();
+        if(uniqueMap1Size >= uniqueMap2Size){
+            this.overlapMap = map1;
+        }else{
+            this.overlapMap = map2;
+        }
+        return overlapMap;
+        
+        
     }
-
+    
+    
+    
+    public int getUniqueMap1Size(){
+        return uniqueMap1Size;
+    }
+    
+    public int getUniqueMap2Size(){
+        return uniqueMap2Size;
+    }
+    
     /**
      *
      * @return
