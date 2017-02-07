@@ -3,6 +3,8 @@ Jasper de Meijer, 560144, BI2D
 
 For running the program run the main class: OWE6_Eindopdracht.java
 
+Efficientie programma: BigO(N)
+
 Known bugs:
 *when creating the VennDiagramm the used Jpanel expands a bit.
 *When the VennDiagramm is created and a dropdown menu is opened the part where the dropdown
